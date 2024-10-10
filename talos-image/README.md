@@ -1,0 +1,1 @@
+This folder contains a script to create a talos machine image on Hetzner, using Hashicorp packer.
