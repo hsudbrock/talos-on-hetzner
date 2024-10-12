@@ -28,3 +28,17 @@ resource "hcloud_server" "controlplane" {
   user_data   = data.talos_machine_configuration.controlplane.machine_configuration
   ssh_keys = [hcloud_ssh_key.this.id]
 }
+
+# For now, a single worker node
+resource "hcloud_server" "worker" {
+  name        = "worker-node-1"
+  server_type = "cx22" # 2 vCPUs, 4GB RAM, 40GB SSD, 3.29/Month, https://docs.hetzner.com/cloud/servers/overview/#shared-vcpu
+  image       = data.hcloud_image.talos_image.id
+  location    = "nbg1" # Nuernberg
+  public_net {
+    ipv4_enabled = true
+    ipv6_enabled = false
+  }
+  user_data   = data.talos_machine_configuration.worker.machine_configuration
+  ssh_keys = [hcloud_ssh_key.this.id]
+}
