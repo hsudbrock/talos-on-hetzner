@@ -1,3 +1,13 @@
+# The SSH key to use on the VMs - not really needed since Talos blocks SSH, but avoids info from Hetzner that no SSH key was provided
+resource "tls_private_key" "this" {
+  algorithm = "ED25519"
+}
+
+resource "hcloud_ssh_key" "this" {
+  name       = "Default SSH key"
+  public_key = tls_private_key.this.public_key_openssh
+}
+
 # The talos image that we have pre-created on our Hetzner account
 data "hcloud_image" "talos_image" {
   with_selector = "os=talos,version=v1.8.1"
@@ -16,4 +26,5 @@ resource "hcloud_server" "controlplane" {
     ipv6_enabled = false
   }
   user_data   = data.talos_machine_configuration.controlplane.machine_configuration
+  ssh_keys = [hcloud_ssh_key.this.id]
 }
