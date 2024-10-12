@@ -8,6 +8,10 @@ output "talosconfig" {
   sensitive = true
 }
 
+output "control_plane_ip" {
+  value = hcloud_primary_ip.main.ip_address
+}
+
 resource "local_file" "kubeconfig" {
   content = data.talos_cluster_kubeconfig.this.kubeconfig_raw
   filename = "kubeconfig"
