@@ -52,4 +52,5 @@ data "talos_cluster_health" "this" {
   client_configuration = talos_machine_secrets.this.client_configuration
   control_plane_nodes = [hcloud_primary_ip.main.ip_address]
   endpoints = [hcloud_primary_ip.main.ip_address]
+  worker_nodes = [hcloud_server.worker.ipv4_address]
 }
