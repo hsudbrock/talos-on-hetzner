@@ -1,0 +1,7 @@
+global:
+  domain: argocd.hsudbrock.de
+
+configs:
+  params:
+    server.insecure: true
+    server.disable.auth: true

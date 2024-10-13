@@ -19,9 +19,20 @@ terraform {
       source  = "hashicorp/tls"
       version = "4.0.6"
     }
+
+    helm = {
+      source  = "hashicorp/helm"
+      version = "2.16.0"  # Specify the version you need
+    }
   }
 }
 
 provider "hcloud" {
   token = var.hcloud_token
+}
+
+provider "helm" {
+  kubernetes {
+    config_path = local_file.kubeconfig.filename
+  }
 }
