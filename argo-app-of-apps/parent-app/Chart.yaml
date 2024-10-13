@@ -1,0 +1,4 @@
+apiVersion: v2
+name: parent-app
+version: 1.0.0
+description: The parent app
