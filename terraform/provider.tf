@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     hcloud = {
-      source = "hetznercloud/hcloud"
+      source  = "hetznercloud/hcloud"
       version = "1.48.1"
     }
 
@@ -11,7 +11,7 @@ terraform {
     }
 
     local = {
-      source = "hashicorp/local"
+      source  = "hashicorp/local"
       version = "2.5.2"
     }
 
@@ -23,6 +23,11 @@ terraform {
     helm = {
       source  = "hashicorp/helm"
       version = "2.16.0"  # Specify the version you need
+    }
+
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "2.33.0"
     }
   }
 }
@@ -36,3 +41,10 @@ provider "helm" {
     config_path = local_file.kubeconfig.filename
   }
 }
+
+provider "kubernetes" {
+  config_path = local_file.kubeconfig.filename
+}
+
+
+
