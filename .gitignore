@@ -38,3 +38,7 @@ terraform.rc
 
 # Ignore .idea folder
 .idea
+
+# Ignore the generated kubeconfig and talosconfig
+kubeconfig
+talosconfig
