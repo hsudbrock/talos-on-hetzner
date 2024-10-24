@@ -1,0 +1,15 @@
+ingress-nginx:
+  controller:
+    kind: DaemonSet
+    hostPort:
+      enabled: true
+      ports:
+        http: 80
+        https: 443
+    metrics:
+      enabled: true
+    service:
+      type: NodePort
+      nodePorts:
+        http: 32080
+        https: 32443

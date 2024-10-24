@@ -1,0 +1,11 @@
+apiVersion: v2
+name: ingress-controller
+version: 1.0.0
+description: Ingress Controller Helm Chart
+
+appVersion: 1.0.0
+
+dependencies:
+  - name: ingress-nginx
+    version: 4.11.3
+    repository: https://kubernetes.github.io/ingress-nginx

@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-controller-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/hsudbrock/talos-on-hetzner.git'
+    targetRevision: main
+    path: argo-app-of-apps/ingress-controller
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ingress-controller
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        # This label is for permitting the hostPort for the ingress controller
+        pod-security.kubernetes.io/enforce: privileged
