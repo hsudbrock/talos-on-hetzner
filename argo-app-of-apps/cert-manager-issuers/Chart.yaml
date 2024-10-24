@@ -1,0 +1,6 @@
+apiVersion: v2
+name: cert-manager
+version: 1.0.0
+description: Cert Manager Issuers Helm Chart
+
+appVersion: 1.0.0
