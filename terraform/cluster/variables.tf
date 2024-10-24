@@ -3,6 +3,11 @@ variable "hcloud_token" {
   type        = string
 }
 
+variable "desec_token" {
+  description = "Desec API Token"
+  type        = string
+}
+
 variable "talos_version" {
   description = "Talos version to use"
   type        = string
