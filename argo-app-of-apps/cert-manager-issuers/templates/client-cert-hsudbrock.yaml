@@ -1,0 +1,22 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: hsudbrock-client-cert
+  namespace: cert-manager
+spec:
+  secretName: hsudbrock-client-cert-secret # Secret where the certificate will be stored
+  duration: 8760h                          # 1 year duration
+  renewBefore: 720h                        # Renew 30 days before expiration
+  commonName: "H. Sudbrock"                # Displayed as the certificate's common name
+  subject:
+    organizations:
+      - hsudbrock.eu                       # Set your organization name here
+  usages:
+    - client auth                          # Allows client certificate use in browsers
+  privateKey:
+    algorithm: RSA                         # RSA is widely compatible with browsers
+    size: 4096                             # Key size; 2048 is sufficient for most cases
+  isCA: false                              # Not a CA certificate
+  issuerRef:
+    name: private-ca-issuer                # Replace with your ClusterIssuer name
+    kind: ClusterIssuer                    # Typically ClusterIssuer, unless using a namespaced Issuer
