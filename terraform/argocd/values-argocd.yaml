@@ -1,5 +1,5 @@
 global:
-  domain: argocd.hsudbrock.de
+  domain: argocd.sudbrock.eu
 
 configs:
   params:
